@@ -4,9 +4,13 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const AUTH_KEY = process.env.AUTH_KEY || "cryptoGPT123key";
-const SCRIPT_ID = process.env.SCRIPT_ID; // Google Apps Script ID
+const SCRIPT_ID = process.env.SCRIPT_ID;
 
-app.get("/", async (req, res) => {
+app.get("/", (req, res) => {
+  res.json({ message: "GPT Proxy Online" });
+});
+
+app.get("/files", async (req, res) => {
   const { ext, minutes, key } = req.query;
 
   if (key !== AUTH_KEY) {
